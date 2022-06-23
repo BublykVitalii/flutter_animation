@@ -12,7 +12,7 @@ class ImageCards extends StatefulWidget {
 
 class _ImageCardsState extends State<ImageCards> {
   late PageController _pageController;
-  final int _currentPage = 0;
+  final int _currentPage = 1;
 
   @override
   void initState() {
@@ -30,7 +30,12 @@ class _ImageCardsState extends State<ImageCards> {
   final List<String> listCard = [
     AppImages.face,
     AppImages.people,
-    AppImages.girl,
+    AppImages.artTwo,
+    AppImages.artFri,
+    AppImages.artFour,
+    AppImages.artFive,
+    AppImages.artSicks,
+    AppImages.artSeven,
   ];
 
   @override
@@ -71,38 +76,33 @@ class _ImageCardsState extends State<ImageCards> {
   Widget carouselCard(String image) {
     return Padding(
       padding: const EdgeInsets.all(20.0),
-      child: Hero(
-        tag: listCard,
-        child: Stack(
-          children: [
-            Container(
-              height: 300,
-              width: 220,
-              decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.circular(30),
-                image: DecorationImage(
-                  image: AssetImage(
-                    image,
-                  ),
-                  fit: BoxFit.fill,
+      child: Stack(
+        children: [
+          Container(
+            decoration: BoxDecoration(
+              color: Colors.white,
+              borderRadius: BorderRadius.circular(20),
+              image: DecorationImage(
+                image: AssetImage(
+                  image,
                 ),
-                boxShadow: const [
-                  BoxShadow(
-                    offset: Offset(0, 4),
-                    blurRadius: 4,
-                    color: Colors.black26,
-                  )
-                ],
+                fit: BoxFit.fill,
               ),
+              boxShadow: const [
+                BoxShadow(
+                  offset: Offset(0, 4),
+                  blurRadius: 4,
+                  color: Colors.black26,
+                )
+              ],
             ),
-            const Positioned(
-              bottom: 80,
-              right: 0,
-              child: Prise(),
-            ),
-          ],
-        ),
+          ),
+          const Positioned(
+            bottom: 0,
+            right: 0,
+            child: Prise(),
+          ),
+        ],
       ),
     );
   }
@@ -130,7 +130,8 @@ class Prise extends StatelessWidget {
           children: [
             Text(
               'Rypto Artwork',
-              style: context.theme.textTheme.headline6!.copyWith(
+              overflow: TextOverflow.ellipsis,
+              style: context.theme.textTheme.subtitle1!.copyWith(
                 color: Colors.black,
                 fontWeight: FontWeight.bold,
               ),
@@ -158,32 +159,37 @@ class Prise extends StatelessWidget {
                 fontWeight: FontWeight.bold,
               ),
             ),
-            const SizedBox(height: 5),
-            Container(
-              height: 30,
-              width: 140,
-              decoration: const BoxDecoration(
-                color: Colors.green,
-                borderRadius: BorderRadius.all(
-                  Radius.circular(20),
+            const SizedBox(height: 15),
+            Center(
+              child: Container(
+                height: 30,
+                width: 120,
+                decoration: const BoxDecoration(
+                  color: Colors.green,
+                  borderRadius: BorderRadius.all(
+                    Radius.circular(20),
+                  ),
                 ),
-              ),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Image.asset(
-                    AppImages.logo,
-                    scale: 1.5,
-                  ),
-                  const SizedBox(width: 5),
-                  Text(
-                    'Place a bid',
-                    style: context.theme.textTheme.caption!.copyWith(
-                      color: Colors.black,
-                      fontWeight: FontWeight.bold,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.all(2.0),
+                      child: Image.asset(
+                        AppImages.ethLogo,
+                        scale: 1.5,
+                      ),
                     ),
-                  ),
-                ],
+                    const SizedBox(width: 5),
+                    Text(
+                      'Place a bid',
+                      style: context.theme.textTheme.caption!.copyWith(
+                        color: Colors.black,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ],
+                ),
               ),
             ),
           ],
