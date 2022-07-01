@@ -13,4 +13,19 @@ class User {
   String toString() {
     return ' User {name: @$name, money: $money, id: $id,}';
   }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+
+    return other is User &&
+        other.name == name &&
+        other.money == money &&
+        other.id == id;
+  }
+
+  @override
+  int get hashCode {
+    return name.hashCode ^ money.hashCode ^ id.hashCode;
+  }
 }

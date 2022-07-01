@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
 
-import 'package:flutter_animation/infrastructure/theme/app_colors.dart';
-import 'package:flutter_animation/infrastructure/theme/app_images.dart';
-import 'package:flutter_animation/infrastructure/theme/theme_extension.dart';
-
 import 'package:flutter_animation/screens/form_field/domaine/user.dart';
+import 'package:flutter_animation/screens/form_field/widgets/list_checkbox.dart';
+import 'package:flutter_animation/screens/form_field/widgets/user_form.dart';
 
 // ---Texts---
 const _kTitle = 'Form field check';
@@ -29,7 +27,13 @@ class FormFieldScreen extends StatefulWidget {
   State<FormFieldScreen> createState() => _FormFieldScreenState();
 }
 
+List<User> selectedUser = [];
+
 class _FormFieldScreenState extends State<FormFieldScreen> {
+  final _formKey = GlobalKey<FormState>();
+
+  bool checkboxValue = false;
+
   final users = List<User>.generate(21, (i) {
     return User(
       name: 'Ruru $i',
@@ -38,10 +42,6 @@ class _FormFieldScreenState extends State<FormFieldScreen> {
     );
   });
 
-  final _formKey = GlobalKey<FormState>();
-
-  List<User> changedUsers = [];
-  bool checkboxValue = false;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -51,44 +51,38 @@ class _FormFieldScreenState extends State<FormFieldScreen> {
       ),
       body: Form(
         key: _formKey,
-        child: ListView.separated(
-          padding: const EdgeInsets.all(10),
-          separatorBuilder: (BuildContext context, int index) {
-            return const Divider(
-              color: Colors.black54,
-            );
-          },
-          itemCount: users.length,
-          itemBuilder: (context, index) {
-            final user = users[index];
-            final isSelected = changedUsers.contains(user);
-            return CheckboxListTile(
-              value: isSelected,
-              onChanged: (value) {
-                if (value!) {
-                  changedUsers.add(user);
-                } else {
-                  changedUsers.remove(user);
-                }
-                setState(() {});
+        child: Column(
+          children: [
+            ListCheckBoxForm(
+              selectedCheckBox: checkboxValue,
+              onSaved: (value) {
+                checkboxValue = value!;
               },
-              tileColor: AppColors.backgroundButton,
-              secondary: Image.asset(
-                AppImages.faceGirl,
-                width: 40,
-                height: 40,
+            ),
+            Expanded(
+              child: UserForm(
+                users: users,
+                selectedUser: selectedUser,
+                onSaved: (value) {
+                  if (value != null) {
+                    setState(() {
+                      selectedUser = value;
+                    });
+                  }
+                },
               ),
-              title: Text(user.name),
-              subtitle: Text(
-                user.money,
-                style: context.theme.textTheme.caption!.copyWith(
-                  color: Colors.grey,
-                ),
-              ),
-            );
-          },
+            ),
+          ],
         ),
       ),
+      bottomNavigationBar: TextButton(
+        onPressed: _onPressedSave,
+        child: const Text('Saved'),
+      ),
     );
+  }
+
+  _onPressedSave() async {
+    _formKey.currentState!.save();
   }
 }
