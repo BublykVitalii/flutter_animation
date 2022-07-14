@@ -85,7 +85,7 @@ class _Card extends StatelessWidget {
           width: _kWidth,
           child: Text(
             text,
-            style: context.theme.textTheme.subtitle1!.copyWith(),
+            style: context.theme.textTheme.subtitle1!,
             overflow: TextOverflow.ellipsis,
           ),
         ),

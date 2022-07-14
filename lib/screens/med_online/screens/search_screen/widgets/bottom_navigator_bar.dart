@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 
 // ---Texts---
-const _kSearch = 'поиск';
-const _kDoctor = 'врачи';
-const _kMedicalCenter = 'медцентры';
-const _kMedicine = 'лекарства';
-const _kRecords = 'записи';
+const _kSearch = 'Поиск';
+const _kDoctor = 'Врачи';
+const _kMedicalCenter = 'Медцентры';
+const _kMedicine = 'Лекарства';
+const _kRecords = 'Записи';
 
 class BottomNavigatorBar extends StatelessWidget {
   const BottomNavigatorBar({

@@ -47,7 +47,6 @@ class _FormFieldScreenState extends State<FormFieldScreen> {
     return Scaffold(
       appBar: AppBar(
         title: Text(_kTitle.toUpperCase()),
-        centerTitle: true,
       ),
       body: Form(
         key: _formKey,

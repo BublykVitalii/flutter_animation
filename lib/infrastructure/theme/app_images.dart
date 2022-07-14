@@ -28,4 +28,5 @@ class AppImages {
   static const toothache = 'assets/images/toothache.png';
   static const woomensPain = 'assets/images/womens_pain.png';
   static const doctor = 'assets/images/doctor.png';
+  static const doctorsList = 'assets/images/doctorsList.png';
 }

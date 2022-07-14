@@ -23,7 +23,7 @@ class Symptoms extends StatelessWidget {
         ),
         Text(
           _kAll,
-          style: context.theme.textTheme.headline6!.copyWith(
+          style: context.theme.textTheme.subtitle1!.copyWith(
             fontWeight: FontWeight.bold,
             color: AppColors.accentColorMedical,
           ),

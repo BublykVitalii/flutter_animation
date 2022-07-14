@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 
-import 'package:flutter_animation/infrastructure/theme/app_colors.dart';
 import 'package:flutter_animation/infrastructure/theme/app_images.dart';
 import 'package:flutter_animation/infrastructure/theme/theme_extension.dart';
-import 'package:flutter_animation/screens/med_online/domaine/doctor.dart';
-import 'package:flutter_animation/screens/med_online/screens/doctor_card.dart';
+import 'package:flutter_animation/screens/med_online/screens/doctors_card_screen.dart/domain/doctor.dart';
+import 'package:flutter_animation/screens/med_online/screens/doctors_card_screen.dart/widgets/doctor_card.dart';
 
 // ---Texts---
 const _kStar = '5.0';
@@ -28,23 +27,23 @@ class DoctorsList extends StatelessWidget {
   Widget build(BuildContext context) {
     return ListView.separated(
       separatorBuilder: (BuildContext context, int index) {
-        return const Divider(
-          color: Colors.black54,
-        );
+        return const Divider();
       },
       itemCount: doctors.length,
       itemBuilder: (context, index) {
         final doctor = doctors[index];
         return ListTile(
           onTap: () {
-            Navigator.push(context, DoctorCard.route);
+            Navigator.push(
+              context,
+              MaterialPageRoute<void>(
+                builder: (context) => DoctorCard(
+                  doctor: doctor,
+                ),
+              ),
+            );
           },
-          leading: Image.asset(
-            AppImages.faceGirl,
-            width: _kWidthImage,
-            height: _kHeightImage,
-          ),
-          tileColor: AppColors.backgroundButton,
+          leading: const DoctorAvatar(),
           title: Text(doctor.name),
           subtitle: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -52,16 +51,15 @@ class DoctorsList extends StatelessWidget {
               const SizedBox(height: _kHeight),
               Text(
                 doctor.speciality,
-                style: context.theme.textTheme.caption!.copyWith(
-                  color: Colors.white,
-                ),
+                style: context.theme.textTheme.caption!.copyWith(),
               ),
               const SizedBox(height: _kHeight),
               Row(
                 children: [
-                  const Icon(
+                  Icon(
                     Icons.star,
                     size: _kSize,
+                    color: Colors.yellow.shade600,
                   ),
                   const SizedBox(width: _kWidth),
                   const Text(_kStar),
@@ -73,6 +71,21 @@ class DoctorsList extends StatelessWidget {
           ),
         );
       },
+    );
+  }
+}
+
+class DoctorAvatar extends StatelessWidget {
+  const DoctorAvatar({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Image.asset(
+      AppImages.doctorsList,
+      width: _kWidthImage,
+      height: _kHeightImage,
     );
   }
 }

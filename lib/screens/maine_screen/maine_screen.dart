@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+
+import 'package:flutter_animation/application.dart';
 import 'package:flutter_animation/infrastructure/theme/app_images.dart';
 import 'package:flutter_animation/screens/form_field/form_field_screen.dart';
-
 import 'package:flutter_animation/screens/maine_screen/widgets/body_cards.dart';
 import 'package:flutter_animation/screens/med_online/med_online_screen.dart';
 import 'package:flutter_animation/screens/rypto_screen/rypto_screen.dart';
@@ -11,6 +13,8 @@ const _kTitle = 'my experience';
 const _kRyptoScreen = 'Rypto screen';
 const _kForm = 'Form field';
 const _kMed = 'Med Online';
+const _kLightTheme = 'Light theme';
+const _kDarkTheme = 'Dark theme';
 
 // ---Parameters---
 const _kHeightRadius = 20.0;
@@ -38,8 +42,26 @@ class _MaineScreenState extends State<MaineScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(_kTitle.toUpperCase()),
-        centerTitle: true,
+        title: Text(
+          _kTitle.toUpperCase(),
+        ),
+        actions: [
+          PopupMenuButton<ThemeMode>(
+            itemBuilder: (context) => [
+              const PopupMenuItem(
+                value: ThemeMode.light,
+                child: Text(_kLightTheme),
+              ),
+              const PopupMenuItem(
+                value: ThemeMode.dark,
+                child: Text(_kDarkTheme),
+              ),
+            ],
+            onSelected: (themeMode) {
+              context.read<MyAppState>().setThemeMode(themeMode);
+            },
+          ),
+        ],
       ),
       body: Stack(
         children: [
