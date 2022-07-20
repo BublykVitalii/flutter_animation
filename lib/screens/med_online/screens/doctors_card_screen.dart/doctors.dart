@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
 
-import 'package:flutter_animation/screens/med_online/screens/doctors_card_screen.dart/domain/doctors_list.dart';
-import 'package:flutter_animation/screens/med_online/screens/doctors_card_screen.dart/widgets/animated_toggle.dart';
+import 'package:flutter_animation/screens/med_online/domain/doctor.dart';
+import 'package:flutter_animation/screens/med_online/domain/doctors_list.dart';
+import 'package:flutter_animation/screens/med_online/screens/doctors_card_screen.dart/widgets/tabs.dart';
 import 'package:flutter_animation/screens/med_online/screens/doctors_card_screen.dart/widgets/doctor_app_bar.dart';
 import 'package:flutter_animation/screens/med_online/screens/doctors_card_screen.dart/widgets/doctors_list.dart';
-import 'package:flutter_animation/screens/med_online/screens/search_screen/widgets/search_med.dart';
-
-// ---Texts---
+import 'package:flutter_animation/screens/med_online/screens/doctors_card_screen.dart/widgets/search_doctor.dart';
 
 // ---Parameters---
-const _kHeight = 20.0;
+const _kHeight = 10.0;
 const _kHeightPreferred = 56.0;
+const _kPadding = 10.0;
 
 class Doctors extends StatefulWidget {
   const Doctors({Key? key}) : super(key: key);
@@ -19,8 +19,24 @@ class Doctors extends StatefulWidget {
   State<Doctors> createState() => _DoctorsState();
 }
 
-class _DoctorsState extends State<Doctors> {
+class _DoctorsState extends State<Doctors> with TickerProviderStateMixin {
+  late TabController _tabController;
+
+  @override
+  void initState() {
+    super.initState();
+    _tabController = TabController(length: 2, vsync: this);
+  }
+
   final doctors = DoctorList().doctors;
+  List<Doctor> searchValue = [];
+  String name = '';
+  Doctor doctorSearch = Doctor(
+    name: 'test',
+    experience: 'test',
+    id: 20,
+    speciality: 'test',
+  );
 
   @override
   Widget build(BuildContext context) {
@@ -38,18 +54,51 @@ class _DoctorsState extends State<Doctors> {
         ),
         body: Column(
           children: [
-            const SearchMed(),
+            SearchDoctor(
+              onSubmit: (value) {
+                setState(() {
+                  name = value;
+                  if (value.isNotEmpty) {
+                    final newDoctor = doctors.firstWhere(
+                      (element) => name == element.name.toLowerCase(),
+                    );
+                    searchValue.add(newDoctor);
+                    doctorSearch = newDoctor;
+                  }
+                });
+              },
+            ),
             const SizedBox(height: _kHeight),
-            const AnimatedToggle(),
+            Padding(
+              padding: const EdgeInsets.only(
+                left: _kPadding,
+                right: _kPadding,
+              ),
+              child: Tabs(tabController: _tabController),
+            ),
             const SizedBox(height: _kHeight),
             Expanded(
-              child: DoctorsList(
-                doctors: doctors,
+              child: TabBarView(
+                controller: _tabController,
+                children: [
+                  DoctorsList(
+                    doctors: searchValue.isEmpty
+                        ? doctors
+                        : listChange(doctors, doctorSearch),
+                  ),
+                  Container(color: Colors.blue),
+                ],
               ),
             ),
           ],
         ),
       ),
     );
+  }
+
+  List<Doctor> listChange(List<Doctor> doctors, Doctor search) {
+    return doctors.where((value) {
+      return value.name.startsWith(search.name);
+    }).toList();
   }
 }

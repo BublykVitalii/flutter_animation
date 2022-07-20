@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_animation/screens/med_online/domain/doctors_list.dart';
-import 'package:flutter_animation/screens/med_online/domain/med_centres_list.dart';
+
 import 'package:searchfield/searchfield.dart';
+
+import 'package:flutter_animation/screens/med_online/domain/doctors_list.dart';
 
 // ---Texts---
 const _kHint = 'Искать врача, клинику, симптомы';
@@ -11,46 +12,34 @@ const _kPadding = 10.0;
 const _kMaxSuggestionsInViewPort = 5;
 const _kItemHeight = 45.0;
 
-class SearchMed extends StatefulWidget {
+class SearchDoctor extends StatefulWidget {
   final ValueChanged<String> onSubmit;
-  const SearchMed({
+  const SearchDoctor({
     Key? key,
     required this.onSubmit,
   }) : super(key: key);
 
   @override
-  State<SearchMed> createState() => _SearchMedState();
+  State<SearchDoctor> createState() => _SearchDoctorState();
 }
 
-class _SearchMedState extends State<SearchMed> {
+class _SearchDoctorState extends State<SearchDoctor> {
   TextEditingController editingController = TextEditingController();
 
   final doctors = DoctorList().doctors;
-  final medCentre = MedCentresList().medCentres;
 
   late List<String> aboutDoctor = doctors
       .map(
         (doctor) => doctor.name.toLowerCase(),
       )
       .toList();
-  late List<String> aboutDoctorSpeciality = doctors
-      .map(
-        (doctor) => doctor.speciality.toLowerCase(),
-      )
-      .toList();
-  late List<String> aboutMedcentre = medCentre
-      .map(
-        (e) => e.name.toLowerCase(),
-      )
-      .toList();
+
   late List<String> searchList = aboutDoctor;
 
   var items = <String>[];
 
   @override
   void initState() {
-    searchList.addAll(aboutMedcentre);
-    searchList.addAll(aboutDoctorSpeciality);
     items.addAll(searchList);
     super.initState();
   }

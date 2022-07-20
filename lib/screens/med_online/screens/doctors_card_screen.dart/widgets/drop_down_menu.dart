@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 const _kAboutTheDoctor = 'О докторе';
 const _kServices = 'Услуги';
 const _kReviews = 'Отзывы';
+const _kLoremIpsumText =
+    'Lorem Ipsum is simply dummy text of the printing and typesetting industry. ';
 
 class DropDownMenu extends StatefulWidget {
   const DropDownMenu({Key? key}) : super(key: key);
@@ -15,18 +17,15 @@ class DropDownMenu extends StatefulWidget {
 class DropDownMenuState extends State<DropDownMenu> {
   final _doctors = <Item>[
     Item(
-      expandedValue:
-          'Lorem Ipsum is simply dummy text of the printing and typesetting industry. ',
+      expandedValue: _kLoremIpsumText,
       headerValue: _kAboutTheDoctor,
     ),
     Item(
-      expandedValue:
-          'Lorem Ipsum is simply dummy text of the printing and typesetting industry.',
+      expandedValue: _kLoremIpsumText,
       headerValue: _kServices,
     ),
     Item(
-      expandedValue:
-          'Lorem Ipsum is simply dummy text of the printing and typesetting industry.',
+      expandedValue: _kLoremIpsumText,
       headerValue: _kReviews,
     ),
   ];

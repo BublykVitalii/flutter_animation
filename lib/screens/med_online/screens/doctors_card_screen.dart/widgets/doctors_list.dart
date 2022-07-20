@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:flutter_animation/infrastructure/theme/app_images.dart';
 import 'package:flutter_animation/infrastructure/theme/theme_extension.dart';
-import 'package:flutter_animation/screens/med_online/screens/doctors_card_screen.dart/domain/doctor.dart';
+import 'package:flutter_animation/screens/med_online/domain/doctor.dart';
 import 'package:flutter_animation/screens/med_online/screens/doctors_card_screen.dart/widgets/doctor_card.dart';
 
 // ---Texts---

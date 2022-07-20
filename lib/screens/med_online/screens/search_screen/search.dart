@@ -51,14 +51,16 @@ class Search extends StatelessWidget {
           ),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
-            children: const [
-              SearchMed(),
-              SizedBox(height: _kHeight),
-              CardMedCenterDoctors(),
-              Divider(height: _kHeightDivider),
-              Symptoms(),
-              SizedBox(height: _kHeight),
-              CardSymptoms(),
+            children: [
+              SearchMed(
+                onSubmit: (_) {},
+              ),
+              const SizedBox(height: _kHeight),
+              const CardMedCenterDoctors(),
+              const Divider(height: _kHeightDivider),
+              const Symptoms(),
+              const SizedBox(height: _kHeight),
+              const CardSymptoms(),
             ],
           ),
         ),

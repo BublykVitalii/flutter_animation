@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:flutter_animation/infrastructure/theme/app_images.dart';
 import 'package:flutter_animation/infrastructure/theme/theme_extension.dart';
-import 'package:flutter_animation/screens/med_online/screens/doctors_card_screen.dart/domain/doctor.dart';
+import 'package:flutter_animation/screens/med_online/domain/doctor.dart';
 import 'package:flutter_animation/screens/med_online/screens/doctors_card_screen.dart/widgets/drop_down_menu.dart';
 
 // ---Texts---
@@ -42,32 +42,26 @@ class _DoctorCardState extends State<DoctorCard> {
       ),
       body: Padding(
         padding: const EdgeInsets.all(_kPadding),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                const _AvatarDoctor(),
-                const SizedBox(height: _kPadding),
-                _DoctorName(name: widget.doctor.name),
-                const SizedBox(height: _kHeight),
-                _DoctorSpeciality(speciality: widget.doctor.speciality),
-                const SizedBox(height: _kPadding),
-                const DropDownMenu(),
-              ],
-            ),
-            Align(
-              alignment: Alignment.bottomCenter,
-              child: SizedBox(
-                width: double.maxFinite,
-                child: TextButton(
-                  onPressed: () {},
-                  child: const Text(_kEnroll),
-                ),
-              ),
-            ),
-          ],
+        child: SingleChildScrollView(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const _AvatarDoctor(),
+              const SizedBox(height: _kPadding),
+              _DoctorName(name: widget.doctor.name),
+              const SizedBox(height: _kHeight),
+              _DoctorSpeciality(speciality: widget.doctor.speciality),
+              const SizedBox(height: _kPadding),
+              const DropDownMenu(),
+            ],
+          ),
+        ),
+      ),
+      bottomSheet: SizedBox(
+        width: double.maxFinite,
+        child: TextButton(
+          onPressed: () {},
+          child: const Text(_kEnroll),
         ),
       ),
     );

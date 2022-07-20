@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_animation/infrastructure/theme/app_colors.dart';
 import 'package:flutter_animation/infrastructure/theme/theme_extension.dart';
 
-import 'package:flutter_animation/screens/med_online/screens/doctors_card_screen.dart/widgets/filter.dart';
+import 'package:flutter_animation/screens/med_online/screens/filter_screen/filter.dart';
 
 // ---Texts---
 const _kFilter = 'Фильтр';
@@ -33,7 +33,7 @@ class DoctorAppBar extends StatelessWidget {
       actions: [
         TextButton(
           onPressed: () {
-            Navigator.push(context, Filter.route);
+            Navigator.push(context, FilterScreen.route);
           },
           style: ButtonStyle(
             backgroundColor: MaterialStateProperty.all(

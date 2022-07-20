@@ -89,6 +89,10 @@ ThemeData getLightTheme(BuildContext context) {
       decorationColor: Colors.black,
     ),
   ).copyWith(
+    tabBarTheme: const TabBarTheme(
+      labelColor: Colors.black,
+      unselectedLabelColor: Colors.grey,
+    ),
     appBarTheme: const AppBarTheme(
       foregroundColor: AppColors.accentColorMedical,
       backgroundColor: Colors.white,

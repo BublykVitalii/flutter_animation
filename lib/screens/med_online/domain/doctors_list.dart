@@ -1,4 +1,4 @@
-import 'package:flutter_animation/screens/med_online/screens/doctors_card_screen.dart/domain/doctor.dart';
+import 'package:flutter_animation/screens/med_online/domain/doctor.dart';
 
 class DoctorList {
   List<Doctor> get doctors => _doctors;
