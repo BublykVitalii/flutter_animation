@@ -26,17 +26,10 @@ class SearchDoctor extends StatefulWidget {
 class _SearchDoctorState extends State<SearchDoctor> {
   TextEditingController editingController = TextEditingController();
 
-  final doctors = DoctorList().doctors;
+  final List<String> searchList =
+      DoctorList().doctors.map((doctor) => doctor.name.toLowerCase()).toList();
 
-  late List<String> aboutDoctor = doctors
-      .map(
-        (doctor) => doctor.name.toLowerCase(),
-      )
-      .toList();
-
-  late List<String> searchList = aboutDoctor;
-
-  var items = <String>[];
+  final items = <String>[];
 
   @override
   void initState() {

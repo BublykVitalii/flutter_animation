@@ -25,32 +25,24 @@ class SearchMed extends StatefulWidget {
 class _SearchMedState extends State<SearchMed> {
   TextEditingController editingController = TextEditingController();
 
-  final doctors = DoctorList().doctors;
-  final medCentre = MedCentresList().medCentres;
+  List<String> searchList =
+      DoctorList().doctors.map((doctor) => doctor.name.toLowerCase()).toList();
 
-  late List<String> aboutDoctor = doctors
-      .map(
-        (doctor) => doctor.name.toLowerCase(),
-      )
+  List<String> aboutDoctorSpeciality = DoctorList()
+      .doctors
+      .map((doctor) => doctor.speciality.toLowerCase())
       .toList();
-  late List<String> aboutDoctorSpeciality = doctors
-      .map(
-        (doctor) => doctor.speciality.toLowerCase(),
-      )
-      .toList();
-  late List<String> aboutMedcentre = medCentre
-      .map(
-        (e) => e.name.toLowerCase(),
-      )
-      .toList();
-  late List<String> searchList = aboutDoctor;
 
-  var items = <String>[];
+  List<String> aboutMedcentre =
+      MedCentresList().medCentres.map((e) => e.name.toLowerCase()).toList();
+
+  final items = <String>[];
 
   @override
   void initState() {
-    searchList.addAll(aboutMedcentre);
-    searchList.addAll(aboutDoctorSpeciality);
+    searchList
+      ..addAll(aboutMedcentre)
+      ..addAll(aboutDoctorSpeciality);
     items.addAll(searchList);
     super.initState();
   }

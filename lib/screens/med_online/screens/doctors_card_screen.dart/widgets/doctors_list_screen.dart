@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_animation/infrastructure/theme/app_images.dart';
 import 'package:flutter_animation/infrastructure/theme/theme_extension.dart';
 import 'package:flutter_animation/screens/med_online/domain/doctor.dart';
-import 'package:flutter_animation/screens/med_online/screens/doctors_card_screen.dart/widgets/doctor_card.dart';
+import 'package:flutter_animation/screens/med_online/screens/doctors_card_screen.dart/widgets/doctor_card_screen.dart';
 
 // ---Texts---
 const _kStar = '5.0';
@@ -15,8 +15,8 @@ const _kWidthImage = 50.0;
 const _kHeightImage = 50.0;
 const _kSize = 15.0;
 
-class DoctorsList extends StatelessWidget {
-  const DoctorsList({
+class DoctorsListScreen extends StatelessWidget {
+  const DoctorsListScreen({
     Key? key,
     required this.doctors,
   }) : super(key: key);
@@ -36,14 +36,10 @@ class DoctorsList extends StatelessWidget {
           onTap: () {
             Navigator.push(
               context,
-              MaterialPageRoute<void>(
-                builder: (context) => DoctorCard(
-                  doctor: doctor,
-                ),
-              ),
+              DoctorCardScreen.route(doctor),
             );
           },
-          leading: const DoctorAvatar(),
+          leading: const _DoctorAvatar(),
           title: Text(doctor.name),
           subtitle: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -75,8 +71,8 @@ class DoctorsList extends StatelessWidget {
   }
 }
 
-class DoctorAvatar extends StatelessWidget {
-  const DoctorAvatar({
+class _DoctorAvatar extends StatelessWidget {
+  const _DoctorAvatar({
     Key? key,
   }) : super(key: key);
 

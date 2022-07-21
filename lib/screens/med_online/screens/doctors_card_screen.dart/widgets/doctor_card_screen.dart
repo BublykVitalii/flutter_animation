@@ -14,19 +14,30 @@ const _kPadding = 10.0;
 const _kHeightWidth = 150.0;
 const _kHeight = 5.0;
 
-class DoctorCard extends StatefulWidget {
+class DoctorCardScreen extends StatefulWidget {
+  static const _routeName = '/med-centre-list-screen';
+
+  static PageRoute route(Doctor doctor) {
+    return MaterialPageRoute(
+      settings: const RouteSettings(name: _routeName),
+      builder: (context) {
+        return DoctorCardScreen(doctor: doctor);
+      },
+    );
+  }
+
   final Doctor doctor;
 
-  const DoctorCard({
+  const DoctorCardScreen({
     Key? key,
     required this.doctor,
   }) : super(key: key);
 
   @override
-  State<DoctorCard> createState() => _DoctorCardState();
+  State<DoctorCardScreen> createState() => _DoctorCardScreenState();
 }
 
-class _DoctorCardState extends State<DoctorCard> {
+class _DoctorCardScreenState extends State<DoctorCardScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -57,7 +68,7 @@ class _DoctorCardState extends State<DoctorCard> {
           ),
         ),
       ),
-      bottomSheet: SizedBox(
+      bottomNavigationBar: SizedBox(
         width: double.maxFinite,
         child: TextButton(
           onPressed: () {},

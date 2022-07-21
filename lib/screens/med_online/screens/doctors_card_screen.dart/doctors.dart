@@ -4,7 +4,7 @@ import 'package:flutter_animation/screens/med_online/domain/doctor.dart';
 import 'package:flutter_animation/screens/med_online/domain/doctors_list.dart';
 import 'package:flutter_animation/screens/med_online/screens/doctors_card_screen.dart/widgets/tabs.dart';
 import 'package:flutter_animation/screens/med_online/screens/doctors_card_screen.dart/widgets/doctor_app_bar.dart';
-import 'package:flutter_animation/screens/med_online/screens/doctors_card_screen.dart/widgets/doctors_list.dart';
+import 'package:flutter_animation/screens/med_online/screens/doctors_card_screen.dart/widgets/doctors_list_screen.dart';
 import 'package:flutter_animation/screens/med_online/screens/doctors_card_screen.dart/widgets/search_doctor.dart';
 
 // ---Parameters---
@@ -81,7 +81,7 @@ class _DoctorsState extends State<Doctors> with TickerProviderStateMixin {
               child: TabBarView(
                 controller: _tabController,
                 children: [
-                  DoctorsList(
+                  DoctorsListScreen(
                     doctors: searchValue.isEmpty
                         ? doctors
                         : listChange(doctors, doctorSearch),

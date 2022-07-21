@@ -65,7 +65,7 @@ class _MedcentreListState extends State<MedcentreList> {
           },
         ),
       ),
-      bottomSheet: SaveMedCentre(onSaved: () {
+      bottomSheet: _SaveMedCentre(onSaved: () {
         _onPressedSave;
         _handleReturn(context);
       }),
@@ -81,8 +81,8 @@ class _MedcentreListState extends State<MedcentreList> {
   }
 }
 
-class SaveMedCentre extends StatelessWidget {
-  const SaveMedCentre({
+class _SaveMedCentre extends StatelessWidget {
+  const _SaveMedCentre({
     Key? key,
     required this.onSaved,
   }) : super(key: key);

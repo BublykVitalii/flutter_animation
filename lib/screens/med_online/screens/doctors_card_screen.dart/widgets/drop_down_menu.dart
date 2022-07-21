@@ -5,7 +5,7 @@ const _kAboutTheDoctor = 'О докторе';
 const _kServices = 'Услуги';
 const _kReviews = 'Отзывы';
 const _kLoremIpsumText =
-    'Lorem Ipsum is simply dummy text of the printing and typesetting industry. ';
+    'Lorem Ipsum is simply dummy text of the printing and typesetting industry.Lorem Ipsum is simply dummy text of the printing and typesetting industry. ';
 
 class DropDownMenu extends StatefulWidget {
   const DropDownMenu({Key? key}) : super(key: key);
