@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_animation/infrastructure/theme/light_theme.dart';
 import 'package:flutter_animation/screens/med_online/screens/doctors_card_screen.dart/doctors.dart';
 
 import 'package:flutter_animation/screens/med_online/screens/search_screen/search.dart';
@@ -47,13 +48,16 @@ class _MedOnlineState extends State<MedOnline> {
       body = _records;
     }
 
-    return Scaffold(
-      body: body,
-      bottomNavigationBar: BottomNavigatorBar(
-        currentIndex: selectedIndex,
-        onTap: (int index) {
-          _onTapHandler(index);
-        },
+    return MaterialApp(
+      theme: getLightTheme(context),
+      home: Scaffold(
+        body: body,
+        bottomNavigationBar: BottomNavigatorBar(
+          currentIndex: selectedIndex,
+          onTap: (int index) {
+            _onTapHandler(index);
+          },
+        ),
       ),
     );
   }
