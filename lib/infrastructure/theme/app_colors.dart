@@ -8,4 +8,5 @@ class AppColors {
   static const accentColor = Color.fromRGBO(107, 253, 204, 1);
   static const text = Color.fromRGBO(196, 196, 196, 1);
   static const buttonColorGrey = Color.fromRGBO(59, 59, 59, 1);
+  static const accentColorMedical = Color.fromRGBO(33, 147, 157, 1);
 }
