@@ -10,11 +10,15 @@ class TextTopic extends StatelessWidget {
   final String title;
   @override
   Widget build(BuildContext context) {
-    return Text(
-      title,
-      style: context.theme.textTheme.headline5!.copyWith(
-        color: Colors.black,
-        fontWeight: FontWeight.bold,
+    return Padding(
+      padding: const EdgeInsets.only(
+        left: 20.0,
+      ),
+      child: Text(
+        title,
+        style: context.theme.textTheme.headline5!.copyWith(
+          fontWeight: FontWeight.bold,
+        ),
       ),
     );
   }

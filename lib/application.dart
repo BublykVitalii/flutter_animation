@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_animation/screens/main_screen/maine_screen.dart';
+import 'package:flutter_animation/infrastructure/theme/dark_theme.dart';
+import 'package:flutter_animation/screens/maine_screen/maine_screen.dart';
+
+// ---Texts---
+const _kTitle = 'my experience';
 
 class MyApp extends StatefulWidget {
   const MyApp({
@@ -13,11 +17,13 @@ class MyApp extends StatefulWidget {
 class MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
-    const MaterialApp();
-
-    return MaterialApp(
+    Widget child = MaterialApp(
+      title: _kTitle.toUpperCase(),
+      themeMode: ThemeMode.dark,
+      darkTheme: getDarkTheme(context),
       onGenerateRoute: onGenerateRoute,
     );
+    return child;
   }
 
   Route onGenerateRoute(RouteSettings? settings) {

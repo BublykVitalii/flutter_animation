@@ -11,6 +11,7 @@ class Sellers extends StatelessWidget {
     return Column(
       children: [
         SingleChildScrollView(
+          padding: const EdgeInsets.only(left: 20.0),
           scrollDirection: Axis.horizontal,
           child: Row(
             children: const [
@@ -99,14 +100,12 @@ class Pransky extends StatelessWidget {
               Text(
                 'Pranksy',
                 style: context.theme.textTheme.caption!.copyWith(
-                  color: Colors.white,
                   fontWeight: FontWeight.bold,
                 ),
               ),
               Text(
                 '35.958 ETH',
                 style: context.theme.textTheme.caption!.copyWith(
-                  color: Colors.grey,
                   fontWeight: FontWeight.bold,
                 ),
               ),
@@ -134,7 +133,6 @@ class People extends StatelessWidget {
       height: 50,
       width: 140,
       decoration: const BoxDecoration(
-        color: Colors.white,
         borderRadius: BorderRadius.all(
           Radius.circular(20),
         ),
@@ -153,14 +151,12 @@ class People extends StatelessWidget {
               Text(
                 name,
                 style: context.theme.textTheme.caption!.copyWith(
-                  color: Colors.black,
                   fontWeight: FontWeight.bold,
                 ),
               ),
               Text(
                 money,
                 style: context.theme.textTheme.caption!.copyWith(
-                  color: Colors.grey,
                   fontWeight: FontWeight.bold,
                 ),
               ),
