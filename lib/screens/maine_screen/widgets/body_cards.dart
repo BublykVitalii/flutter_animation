@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
 import 'package:flutter_animation/infrastructure/theme/app_colors.dart';
-import 'package:flutter_animation/infrastructure/theme/app_images.dart';
 
 // ---Parameters---
 const double _kHeight = 30;
@@ -13,10 +12,12 @@ class BodyCards extends StatelessWidget {
     Key? key,
     required this.title,
     required this.onTap,
+    required this.image,
   }) : super(key: key);
 
   final String title;
   final VoidCallback onTap;
+  final String image;
 
   @override
   Widget build(BuildContext context) {
@@ -27,7 +28,7 @@ class BodyCards extends StatelessWidget {
         onTap: onTap,
         child: Ink.image(
           image: Image.asset(
-            AppImages.artOne,
+            image,
           ).image,
           fit: BoxFit.cover,
           child: Align(
