@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_animation/screens/dji_shop/dji_shop_screen.dart';
 import 'package:provider/provider.dart';
 
 import 'package:flutter_animation/application.dart';
@@ -15,6 +16,7 @@ const _kForm = 'Form field';
 const _kMed = 'Med Online';
 const _kLightTheme = 'Light theme';
 const _kDarkTheme = 'Dark theme';
+const _kDjiShop = 'dji shop';
 
 // ---Parameters---
 const _kHeightRadius = 20.0;
@@ -70,11 +72,19 @@ class _MaineScreenState extends State<MaineScreen> {
             child: Column(
               children: [
                 BodyCards(
-                  title: _kRyptoScreen.toUpperCase(),
+                  title: _kDjiShop.toUpperCase(),
                   onTap: () {
-                    Navigator.push(context, RyptoScreen.route);
+                    Navigator.push(context, DjiShopScreen.route);
                   },
-                  image: AppImages.artOne,
+                  image: AppImages.djiShop,
+                ),
+                const SizedBox(height: 20),
+                BodyCards(
+                  title: _kMed.toUpperCase(),
+                  onTap: () {
+                    Navigator.push(context, MedOnline.route);
+                  },
+                  image: AppImages.med,
                 ),
                 const SizedBox(height: 20),
                 BodyCards(
@@ -86,11 +96,11 @@ class _MaineScreenState extends State<MaineScreen> {
                 ),
                 const SizedBox(height: 20),
                 BodyCards(
-                  title: _kMed.toUpperCase(),
+                  title: _kRyptoScreen.toUpperCase(),
                   onTap: () {
-                    Navigator.push(context, MedOnline.route);
+                    Navigator.push(context, RyptoScreen.route);
                   },
-                  image: AppImages.med,
+                  image: AppImages.artOne,
                 ),
               ],
             ),

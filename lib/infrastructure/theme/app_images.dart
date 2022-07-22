@@ -17,7 +17,6 @@ class AppImages {
   static const med = 'assets/images/med.png';
   static const medCentre = 'assets/images/medCentre.png';
   static const doctors = 'assets/images/doctors.png';
-
   static const allergies = 'assets/images/allergies.png';
   static const cold = 'assets/images/cold.png';
   static const computerTired = 'assets/images/computer_tired.png';
@@ -29,4 +28,5 @@ class AppImages {
   static const woomensPain = 'assets/images/womens_pain.png';
   static const doctor = 'assets/images/doctor.png';
   static const doctorsList = 'assets/images/doctorsList.png';
+  static const djiShop = 'assets/images/dji_shop.png';
 }
