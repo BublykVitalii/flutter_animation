@@ -29,4 +29,6 @@ class AppImages {
   static const doctor = 'assets/images/doctor.png';
   static const doctorsList = 'assets/images/doctorsList.png';
   static const djiShop = 'assets/images/dji_shop.png';
+  static const burgerMenu = 'assets/images/burger_menu.png';
+  static const mavik3 = 'assets/images/mavik3.png';
 }

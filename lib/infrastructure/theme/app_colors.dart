@@ -9,4 +9,6 @@ class AppColors {
   static const text = Color.fromRGBO(196, 196, 196, 1);
   static const buttonColorGrey = Color.fromRGBO(59, 59, 59, 1);
   static const accentColorMedical = Color.fromRGBO(33, 147, 157, 1);
+  static const iconDji = Color.fromRGBO(183, 183, 183, 1);
+  static const backgroundDji = Color.fromRGBO(249, 249, 249, 1);
 }

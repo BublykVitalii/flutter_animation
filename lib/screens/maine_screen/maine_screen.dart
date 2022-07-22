@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_animation/screens/dji_shop/dji_shop_screen.dart';
+import 'package:flutter_animation/screens/dji_shop/screens/dji_shop_screen/dji_shop_screen.dart';
 import 'package:provider/provider.dart';
 
 import 'package:flutter_animation/application.dart';
