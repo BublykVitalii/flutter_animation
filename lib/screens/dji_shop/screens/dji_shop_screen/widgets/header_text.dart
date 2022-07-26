@@ -25,7 +25,7 @@ class HeaderText extends StatelessWidget {
         children: [
           Text(
             firstWord,
-            style: context.theme.textTheme.headline5!.copyWith(),
+            style: context.theme.textTheme.headline5!,
           ),
           Text(
             secondWord,

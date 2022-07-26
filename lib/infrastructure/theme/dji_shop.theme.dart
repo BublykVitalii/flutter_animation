@@ -8,12 +8,12 @@ const _colorTheme = ColorScheme(
   onPrimary: Colors.black87,
   secondary: Colors.black,
   onSecondary: Colors.black,
-  error: Colors.red,
-  onError: Colors.red,
-  background: Colors.red,
+  error: AppColors.backgroundProductCard,
+  onError: AppColors.backgroundProductCard,
+  background: AppColors.backgroundProductCard,
   onBackground: AppColors.backgroundDji,
-  surface: Colors.black,
-  onSurface: Colors.black,
+  surface: AppColors.backgroundProductCard,
+  onSurface: Colors.white,
 );
 
 Color _getCheckboxCheckedColor(Set<MaterialState> states) {
@@ -98,14 +98,28 @@ ThemeData getDjiTheme(BuildContext context) {
       elevation: 0,
     ),
     iconTheme: const IconThemeData(
-      color: AppColors.iconDji,
+      color: Colors.white,
     ),
     textButtonTheme: TextButtonThemeData(
       style: TextButton.styleFrom(
-        backgroundColor: AppColors.accentColorMedical,
-        primary: Colors.black,
         padding: textButtonScaledPadding,
       ).copyWith(
+        backgroundColor:
+            MaterialStateProperty.all(AppColors.backgroundProductCard),
+        minimumSize: MaterialStateProperty.all(
+          const Size(
+            double.maxFinite,
+            80,
+          ),
+        ),
+        shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+          const RoundedRectangleBorder(
+            borderRadius: BorderRadius.only(
+              topLeft: Radius.circular(30),
+              topRight: Radius.circular(30),
+            ),
+          ),
+        ),
         side: MaterialStateProperty.resolveWith(_getOutlinedColor),
       ),
     ),
@@ -114,7 +128,7 @@ ThemeData getDjiTheme(BuildContext context) {
         elevation: MaterialStateProperty.all(0),
         shadowColor: MaterialStateProperty.all(AppColors.backgroundDji),
         foregroundColor: MaterialStateProperty.all(AppColors.iconDji),
-        fixedSize: MaterialStateProperty.all(Size.fromHeight(60)),
+        fixedSize: MaterialStateProperty.all(const Size.fromHeight(60)),
         backgroundColor: MaterialStateProperty.all(Colors.white),
         shape: MaterialStateProperty.all<RoundedRectangleBorder>(
           RoundedRectangleBorder(
@@ -122,12 +136,10 @@ ThemeData getDjiTheme(BuildContext context) {
           ),
         ),
       ),
-
-      //  ElevatedButton.styleFrom(
-      //   primary: Colors.white,
-      //   onPrimary: AppColors.iconDji,
-      //   //padding: buttonScaledPadding,
-      // ),
+    ),
+    floatingActionButtonTheme: const FloatingActionButtonThemeData(
+      backgroundColor: AppColors.backgroundProductCard,
+      foregroundColor: Colors.white,
     ),
     outlinedButtonTheme: OutlinedButtonThemeData(
       style: OutlinedButton.styleFrom(
@@ -175,6 +187,9 @@ ThemeData getDjiTheme(BuildContext context) {
       fillColor: AppColors.accentColorMedical,
       splashColor: AppColors.accentColorMedical,
       borderColor: Colors.grey.shade200,
+    ),
+    bottomSheetTheme: const BottomSheetThemeData(
+      backgroundColor: Colors.white,
     ),
   );
 }
