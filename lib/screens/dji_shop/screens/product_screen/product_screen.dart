@@ -6,9 +6,10 @@ import 'package:flutter_animation/infrastructure/theme/theme_extension.dart';
 import 'package:flutter_animation/screens/dji_shop/screens/product_screen/widgets/product_app_bar.dart';
 import 'package:flutter_animation/screens/dji_shop/screens/product_screen/widgets/product_description.dart';
 import 'package:flutter_animation/screens/dji_shop/screens/product_screen/widgets/slider_image.dart';
+import 'package:flutter_animation/screens/dji_shop/screens/shopping_cart_screen/shopping_cart_screen.dart';
 
 // ---Texts---
-
+const _kBottom = 'Add To My Card';
 // ---Parameters---
 const _kFromHeight = 60.0;
 
@@ -46,13 +47,15 @@ class _ProductScreenState extends State<ProductScreen> {
         ],
       ),
       bottomSheet: TextButton.icon(
-        onPressed: () {},
+        onPressed: () {
+          Navigator.push(context, ShoppingCartScreen.route);
+        },
         icon: const Icon(
           Icons.shopping_cart_outlined,
           color: Colors.white,
         ),
         label: Text(
-          'Add To My Card',
+          _kBottom,
           style: context.theme.textTheme.headline6!.copyWith(
             color: Colors.white,
           ),
