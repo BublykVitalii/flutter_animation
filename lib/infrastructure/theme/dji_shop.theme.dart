@@ -109,7 +109,7 @@ ThemeData getDjiTheme(BuildContext context) {
         minimumSize: MaterialStateProperty.all(
           const Size(
             double.maxFinite,
-            80,
+            40,
           ),
         ),
         shape: MaterialStateProperty.all<RoundedRectangleBorder>(
@@ -118,9 +118,9 @@ ThemeData getDjiTheme(BuildContext context) {
               topLeft: Radius.circular(30),
               topRight: Radius.circular(30),
             ),
+            side: BorderSide(color: AppColors.backgroundProductCard),
           ),
         ),
-        side: MaterialStateProperty.resolveWith(_getOutlinedColor),
       ),
     ),
     elevatedButtonTheme: ElevatedButtonThemeData(
@@ -189,7 +189,7 @@ ThemeData getDjiTheme(BuildContext context) {
       borderColor: Colors.grey.shade200,
     ),
     bottomSheetTheme: const BottomSheetThemeData(
-      backgroundColor: Colors.white,
+      backgroundColor: Colors.transparent,
     ),
   );
 }

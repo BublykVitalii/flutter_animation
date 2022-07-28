@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 
+// ---Parameters---
+const _kRadius = Radius.circular(25);
+
 class BottomBar extends StatelessWidget {
   const BottomBar({Key? key}) : super(key: key);
 
@@ -7,8 +10,8 @@ class BottomBar extends StatelessWidget {
   Widget build(BuildContext context) {
     return ClipRRect(
       borderRadius: const BorderRadius.only(
-        topLeft: Radius.circular(25),
-        topRight: Radius.circular(25),
+        topLeft: _kRadius,
+        topRight: _kRadius,
       ),
       child: BottomAppBar(
         shape: const CircularNotchedRectangle(),
@@ -20,18 +23,15 @@ class BottomBar extends StatelessWidget {
               onPressed: () {},
             ),
             IconButton(
-              tooltip: 'Search',
               icon: const Icon(Icons.favorite_outline),
               onPressed: () {},
             ),
             const SizedBox(width: 10),
             IconButton(
-              tooltip: 'Favorite',
               icon: const Icon(Icons.shop),
               onPressed: () {},
             ),
             IconButton(
-              tooltip: 'Favorite',
               icon: const Icon(Icons.account_circle_outlined),
               onPressed: () {},
             ),

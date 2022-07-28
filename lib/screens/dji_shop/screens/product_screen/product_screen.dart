@@ -16,7 +16,7 @@ const _kFromHeight = 60.0;
 class ProductScreen extends StatefulWidget {
   static const _routeName = '/product-screen';
 
-  static PageRoute<ProductScreen> get route {
+  static PageRoute getRoute() {
     return MaterialPageRoute(
       settings: const RouteSettings(name: _routeName),
       builder: (context) {
@@ -48,7 +48,7 @@ class _ProductScreenState extends State<ProductScreen> {
       ),
       bottomSheet: TextButton.icon(
         onPressed: () {
-          Navigator.push(context, ShoppingCartScreen.route);
+          Navigator.push(context, ShoppingCartScreen.getRoute());
         },
         icon: const Icon(
           Icons.shopping_cart_outlined,
@@ -61,6 +61,7 @@ class _ProductScreenState extends State<ProductScreen> {
           ),
         ),
       ),
+      extendBody: true,
     );
   }
 }

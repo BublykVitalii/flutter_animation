@@ -17,7 +17,7 @@ class DjiAppBar extends StatelessWidget {
         IconButton(
           icon: const Icon(Icons.shopping_cart_outlined),
           onPressed: () {
-            Navigator.push(context, ShoppingCartScreen.route);
+            Navigator.push(context, ShoppingCartScreen.getRoute());
           },
         ),
         const SizedBox(width: 15),

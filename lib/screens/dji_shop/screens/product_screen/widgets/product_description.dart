@@ -1,46 +1,56 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_animation/screens/dji_shop/screens/shopping_cart_screen/widgets/quantity.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 
 import 'package:flutter_animation/infrastructure/theme/theme_extension.dart';
+
+// ---Parameters---
+const _kRadius = Radius.circular(40);
+const _kPadding = 20.0;
 
 class ProductDescription extends StatelessWidget {
   const ProductDescription({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Flexible(
+    return Expanded(
       child: Container(
         height: double.maxFinite,
         width: double.maxFinite,
         decoration: const BoxDecoration(
           color: Colors.white,
           borderRadius: BorderRadius.only(
-            topLeft: Radius.circular(40),
-            topRight: Radius.circular(40),
+            topLeft: _kRadius,
+            topRight: _kRadius,
           ),
         ),
         child: SingleChildScrollView(
-          padding: const EdgeInsets.only(
-            left: 20.0,
-            top: 20.0,
-            right: 20.0,
-          ),
+          padding: const EdgeInsets.all(_kPadding),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
-            children: const [
-              _ProductName(productName: 'DJI Mavik 3'),
-              SizedBox(height: 5),
-              _RatingReviewPrice(
+            children: [
+              const _ProductName(productName: 'DJI Mavik 3'),
+              const SizedBox(height: 5),
+              const _RatingReviewPrice(
                 rating: 3.0,
                 review: '56 Reviews',
                 price: '\$ 2.049',
               ),
-              SizedBox(height: 10),
-              _DescriptionProduct(
+              const SizedBox(height: 10),
+              const _DescriptionProduct(
                   description:
                       'Capture stunning imagery with a legendary Hasselblad camera and enjoy smooth flight with omnidirectional obstacle sensing. Every improvement on Mavic 3 sets a higher standard for aerial photography. Fly with Mavic 3 and discover imaging above everything.'),
-              SizedBox(height: 10),
-              _Quantity(),
+              const SizedBox(height: 10),
+              Quantity(
+                text: Text(
+                  'Quantity',
+                  style: context.theme.textTheme.subtitle1!.copyWith(
+                    color: Colors.grey,
+                  ),
+                ),
+                isColumn: false,
+              ),
+              const SizedBox(height: 60),
             ],
           ),
         ),
@@ -135,85 +145,6 @@ class _DescriptionProduct extends StatelessWidget {
         color: Colors.black,
         height: 1.5,
       ),
-    );
-  }
-}
-
-class _Quantity extends StatelessWidget {
-  const _Quantity({
-    Key? key,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: [
-        Text(
-          'Quantity',
-          style: context.theme.textTheme.subtitle1!.copyWith(
-            color: Colors.grey,
-          ),
-        ),
-        Row(
-          children: [
-            InkWell(
-              onTap: () {},
-              child: Container(
-                height: 30,
-                width: 30,
-                decoration: BoxDecoration(
-                  color: Colors.grey.shade300,
-                  borderRadius: const BorderRadius.all(
-                    Radius.circular(5),
-                  ),
-                ),
-                child: const Icon(
-                  Icons.remove,
-                  color: Colors.grey,
-                ),
-              ),
-            ),
-            const SizedBox(width: 5),
-            Container(
-              height: 40,
-              width: 40,
-              decoration: BoxDecoration(
-                color: Colors.grey.shade300,
-                borderRadius: const BorderRadius.all(
-                  Radius.circular(5),
-                ),
-              ),
-              child: Center(
-                child: Text(
-                  '10',
-                  style: context.theme.textTheme.subtitle2!.copyWith(
-                    color: Colors.black,
-                  ),
-                ),
-              ),
-            ),
-            const SizedBox(width: 5),
-            InkWell(
-              onTap: () {},
-              child: Container(
-                height: 30,
-                width: 30,
-                decoration: BoxDecoration(
-                  color: Colors.grey.shade300,
-                  borderRadius: const BorderRadius.all(
-                    Radius.circular(5),
-                  ),
-                ),
-                child: const Icon(
-                  Icons.add,
-                  color: Colors.grey,
-                ),
-              ),
-            ),
-          ],
-        )
-      ],
     );
   }
 }

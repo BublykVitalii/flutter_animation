@@ -70,7 +70,7 @@ class _DjiShopScreenState extends State<DjiShopScreen> {
               const SizedBox(height: _kHeight),
               FilterProduct(),
               const SizedBox(height: _kHeight),
-              const ProductCard(),
+              ProductCard(),
             ],
           ),
         ),

@@ -27,7 +27,7 @@ class ProductAppBar extends StatelessWidget {
             color: Colors.white,
           ),
           onPressed: () {
-            Navigator.push(context, ShoppingCartScreen.route);
+            Navigator.push(context, ShoppingCartScreen.getRoute());
           },
         ),
         const SizedBox(width: 15),

@@ -1,47 +1,58 @@
 import 'package:flutter/material.dart';
+
 import 'package:flutter_animation/infrastructure/theme/app_colors.dart';
 import 'package:flutter_animation/infrastructure/theme/app_images.dart';
 import 'package:flutter_animation/infrastructure/theme/theme_extension.dart';
 import 'package:flutter_animation/screens/dji_shop/screens/product_screen/product_screen.dart';
 
 // ---Parameters---
-const _kPadding = 15.0;
 const _kWidthHeight = 300.0;
+const _kViewportFraction = 0.9;
+const _kPadding = 5.0;
 
 class ProductCard extends StatelessWidget {
-  const ProductCard({
+  ProductCard({
     Key? key,
   }) : super(key: key);
 
+  final PageController controller = PageController(
+    viewportFraction: _kViewportFraction,
+  );
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      padding: const EdgeInsets.only(
-        left: _kPadding,
-        right: _kPadding,
-        top: _kPadding,
-      ),
-      scrollDirection: Axis.horizontal,
-      child: Stack(
+    return SizedBox(
+      height: 300,
+      width: double.maxFinite,
+      child: PageView(
+        controller: controller,
+        padEnds: false,
         children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: const [
-              SizedBox(
-                width: _kWidthHeight,
-                child: _CardProduct(),
-              ),
-              // SizedBox(
-              //   width: _kWidthHeight,
-              //   child: _CardProduct(),
-              // ),
-              // SizedBox(
-              //   width: _kWidthHeight,
-              //   child: _CardProduct(),
-              // ),
-            ],
+          Padding(
+            padding: const EdgeInsets.all(_kPadding),
+            child: Stack(
+              children: const [
+                SizedBox(
+                  width: _kWidthHeight,
+                  child: _CardProduct(
+                    tag: 'productImage',
+                  ),
+                ),
+              ],
+            ),
           ),
+          Padding(
+            padding: const EdgeInsets.all(_kPadding),
+            child: Stack(
+              children: const [
+                SizedBox(
+                  width: _kWidthHeight,
+                  child: _CardProduct(
+                    tag: 'productImage1',
+                  ),
+                ),
+              ],
+            ),
+          )
         ],
       ),
     );
@@ -51,8 +62,10 @@ class ProductCard extends StatelessWidget {
 class _CardProduct extends StatelessWidget {
   const _CardProduct({
     Key? key,
+    required this.tag,
   }) : super(key: key);
 
+  final String tag;
   @override
   Widget build(BuildContext context) {
     const nameProduct = Positioned(
@@ -79,17 +92,10 @@ class _CardProduct extends StatelessWidget {
       left: 25,
       child: InkWell(
         onTap: () {
-          Navigator.push(
-            context,
-            MaterialPageRoute(
-              builder: (context) {
-                return const ProductScreen();
-              },
-            ),
-          );
+          Navigator.push(context, ProductScreen.getRoute());
         },
         child: Hero(
-          tag: 'productImage',
+          tag: tag,
           child: Image.asset(
             AppImages.mavik3,
             height: 280,

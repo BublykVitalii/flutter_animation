@@ -21,7 +21,7 @@ const _kFromHeight = 60.0;
 class ShoppingCartScreen extends StatefulWidget {
   static const _routeName = '/shopping-cart-screen';
 
-  static PageRoute<ShoppingCartScreen> get route {
+  static PageRoute<ShoppingCartScreen> getRoute() {
     return MaterialPageRoute(
       settings: const RouteSettings(name: _routeName),
       builder: (context) {
@@ -66,37 +66,18 @@ class _ShoppingCartScreenState extends State<ShoppingCartScreen> {
             firstWord: _kShopping,
             secondWord: _kCart,
           ),
-          const SizedBox(height: 40),
+          const SizedBox(height: 20),
           Expanded(
             child: ListView.separated(
-              separatorBuilder: (BuildContext context, int index) {
-                return const Divider();
-              },
-              itemCount: 4,
-              itemBuilder: (context, index) {
-                return Row(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    ImageProduct(
-                      colors: colors,
-                      index: index,
-                      image: AppImages.mavik3,
-                    ),
-                    const NameAndPrice(
-                      nameProduct: 'DJI Mavik 3',
-                      price: '\$ 2.049',
-                    ),
-                    const Quantity(),
-                    const SizedBox(),
-                  ],
-                );
-              },
-            ),
+                separatorBuilder: (BuildContext context, int index) {
+                  return const Divider();
+                },
+                itemCount: 4,
+                itemBuilder: _buildShoppingCart),
           ),
         ],
       ),
-      bottomSheet: TextButton.icon(
+      bottomNavigationBar: TextButton.icon(
         onPressed: () {},
         icon: const Icon(
           Icons.arrow_forward,
@@ -109,6 +90,35 @@ class _ShoppingCartScreenState extends State<ShoppingCartScreen> {
           ),
         ),
       ),
+      extendBody: true,
     );
   }
+}
+
+Widget _buildShoppingCart(BuildContext context, int index) {
+  List colors = [
+    Colors.red,
+    Colors.green,
+    Colors.yellow,
+    Colors.blueAccent,
+  ];
+  return Row(
+    crossAxisAlignment: CrossAxisAlignment.start,
+    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+    children: [
+      ImageProduct(
+        colors: colors,
+        index: index,
+        image: AppImages.mavik3,
+      ),
+      const NameAndPrice(
+        nameProduct: 'DJI Mavik 3',
+        price: '\$ 2.049',
+      ),
+      const Quantity(
+        isColumn: true,
+      ),
+      const SizedBox(),
+    ],
+  );
 }

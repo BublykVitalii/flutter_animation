@@ -16,46 +16,39 @@ class _SliderImageState extends State<SliderImage> {
 
   @override
   Widget build(BuildContext context) {
+    final List<Widget> imageSliders = _imgList
+        .map(
+          (item) => SizedBox(
+            width: 400,
+            child: Image.asset(
+              item,
+              fit: BoxFit.cover,
+            ),
+          ),
+        )
+        .toList();
+    final carousel = Expanded(
+      child: CarouselSlider(
+        items: imageSliders,
+        carouselController: _controller,
+        options: CarouselOptions(
+          onPageChanged: (index, reason) {
+            setState(() {
+              _current = index;
+            });
+          },
+        ),
+      ),
+    );
     return Flexible(
       child: Hero(
         tag: 'productImage',
         child: Column(
           children: [
-            Expanded(
-              child: CarouselSlider(
-                items: imageSliders,
-                carouselController: _controller,
-                options: CarouselOptions(
-                  onPageChanged: (index, reason) {
-                    setState(() {
-                      _current = index;
-                    });
-                  },
-                ),
-              ),
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: imgList.asMap().entries.map((entry) {
-                return GestureDetector(
-                  onTap: () => _controller.animateToPage(entry.key),
-                  child: Container(
-                    width: 12.0,
-                    height: 12.0,
-                    margin: const EdgeInsets.symmetric(
-                      vertical: 8.0,
-                      horizontal: 4.0,
-                    ),
-                    decoration: BoxDecoration(
-                      shape: BoxShape.circle,
-                      color: (Theme.of(context).brightness == Brightness.dark
-                              ? Colors.white
-                              : Colors.black)
-                          .withOpacity(_current == entry.key ? 1 : 0.4),
-                    ),
-                  ),
-                );
-              }).toList(),
+            carousel,
+            ImageList(
+              controller: _controller,
+              current: _current,
             ),
           ],
         ),
@@ -64,16 +57,48 @@ class _SliderImageState extends State<SliderImage> {
   }
 }
 
-final List<String> imgList = [
+class ImageList extends StatelessWidget {
+  const ImageList({
+    Key? key,
+    required CarouselController controller,
+    required int current,
+  })  : _controller = controller,
+        _current = current,
+        super(key: key);
+
+  final CarouselController _controller;
+  final int _current;
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: _imgList.asMap().entries.map((entry) {
+        return GestureDetector(
+          onTap: () => _controller.animateToPage(entry.key),
+          child: Container(
+            width: 12.0,
+            height: 12.0,
+            margin: const EdgeInsets.symmetric(
+              vertical: 8.0,
+              horizontal: 4.0,
+            ),
+            decoration: BoxDecoration(
+              shape: BoxShape.circle,
+              color: (Theme.of(context).brightness == Brightness.dark
+                      ? Colors.white
+                      : Colors.black)
+                  .withOpacity(_current == entry.key ? 1 : 0.4),
+            ),
+          ),
+        );
+      }).toList(),
+    );
+  }
+}
+
+final List<String> _imgList = [
   AppImages.mavik3,
   AppImages.mavik3,
   AppImages.mavik3
 ];
-
-final List<Widget> imageSliders = imgList
-    .map((item) => Image.asset(
-          item,
-          fit: BoxFit.cover,
-          width: 1000.0,
-        ))
-    .toList();
