@@ -1,10 +1,15 @@
-import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_animation/infrastructure/theme/app_images.dart';
+import 'package:carousel_slider/carousel_slider.dart';
+
+import 'package:flutter_animation/screens/dji_shop/domain/product.dart';
 
 class SliderImage extends StatefulWidget {
-  const SliderImage({Key? key}) : super(key: key);
+  const SliderImage({
+    Key? key,
+    required this.product,
+  }) : super(key: key);
 
+  final Product product;
   @override
   State<SliderImage> createState() => _SliderImageState();
 }
@@ -16,12 +21,12 @@ class _SliderImageState extends State<SliderImage> {
 
   @override
   Widget build(BuildContext context) {
-    final List<Widget> imageSliders = _imgList
+    final List<Widget> imageSliders = widget.product.imageProduct
         .map(
-          (item) => SizedBox(
+          (image) => SizedBox(
             width: 400,
             child: Image.asset(
-              item,
+              image,
               fit: BoxFit.cover,
             ),
           ),
@@ -49,6 +54,7 @@ class _SliderImageState extends State<SliderImage> {
             ImageList(
               controller: _controller,
               current: _current,
+              product: widget.product,
             ),
           ],
         ),
@@ -60,6 +66,7 @@ class _SliderImageState extends State<SliderImage> {
 class ImageList extends StatelessWidget {
   const ImageList({
     Key? key,
+    required this.product,
     required CarouselController controller,
     required int current,
   })  : _controller = controller,
@@ -68,12 +75,12 @@ class ImageList extends StatelessWidget {
 
   final CarouselController _controller;
   final int _current;
-
+  final Product product;
   @override
   Widget build(BuildContext context) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
-      children: _imgList.asMap().entries.map((entry) {
+      children: product.imageProduct.asMap().entries.map((entry) {
         return GestureDetector(
           onTap: () => _controller.animateToPage(entry.key),
           child: Container(
@@ -96,9 +103,3 @@ class ImageList extends StatelessWidget {
     );
   }
 }
-
-final List<String> _imgList = [
-  AppImages.mavik3,
-  AppImages.mavik3,
-  AppImages.mavik3
-];

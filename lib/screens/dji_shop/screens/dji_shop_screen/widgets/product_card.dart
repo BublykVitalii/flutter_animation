@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
 import 'package:flutter_animation/infrastructure/theme/app_colors.dart';
-import 'package:flutter_animation/infrastructure/theme/app_images.dart';
 import 'package:flutter_animation/infrastructure/theme/theme_extension.dart';
+import 'package:flutter_animation/screens/dji_shop/domain/product.dart';
 import 'package:flutter_animation/screens/dji_shop/screens/product_screen/product_screen.dart';
 
 // ---Parameters---
@@ -13,47 +13,43 @@ const _kPadding = 5.0;
 class ProductCard extends StatelessWidget {
   ProductCard({
     Key? key,
+    // required this.tag,
+    // required this.name,
+    // required this.price,
+    // required this.image,
+    required this.product,
   }) : super(key: key);
 
   final PageController controller = PageController(
     viewportFraction: _kViewportFraction,
   );
+
+  // final String tag;
+  // final String name;
+  // final String price;
+  // final String image;
+  final Product product;
+
   @override
   Widget build(BuildContext context) {
     return SizedBox(
       height: 300,
-      width: double.maxFinite,
-      child: PageView(
-        controller: controller,
-        padEnds: false,
-        children: [
-          Padding(
-            padding: const EdgeInsets.all(_kPadding),
-            child: Stack(
-              children: const [
-                SizedBox(
-                  width: _kWidthHeight,
-                  child: _CardProduct(
-                    tag: 'productImage',
-                  ),
-                ),
-              ],
+      child: Padding(
+        padding: const EdgeInsets.all(_kPadding),
+        child: Stack(
+          children: [
+            SizedBox(
+              width: _kWidthHeight,
+              child: _CardProduct(
+                product: product,
+                tag: product.id.toString(),
+                name: product.productName,
+                price: product.price,
+                image: product.imageProduct.first,
+              ),
             ),
-          ),
-          Padding(
-            padding: const EdgeInsets.all(_kPadding),
-            child: Stack(
-              children: const [
-                SizedBox(
-                  width: _kWidthHeight,
-                  child: _CardProduct(
-                    tag: 'productImage1',
-                  ),
-                ),
-              ],
-            ),
-          )
-        ],
+          ],
+        ),
       ),
     );
   }
@@ -63,24 +59,32 @@ class _CardProduct extends StatelessWidget {
   const _CardProduct({
     Key? key,
     required this.tag,
+    required this.name,
+    required this.price,
+    required this.image,
+    required this.product,
   }) : super(key: key);
 
   final String tag;
+  final String name;
+  final String price;
+  final String image;
+  final Product product;
   @override
   Widget build(BuildContext context) {
-    const nameProduct = Positioned(
+    final nameProduct = Positioned(
       left: 15,
       top: 15,
       child: _CardText(
         firstWord: 'DJI',
-        secondWord: 'Mavic 3',
+        secondWord: name,
       ),
     );
     final priceProduct = Positioned(
       right: 80,
       top: 15,
       child: Text(
-        '\$ 2.049',
+        '₴ $price',
         style: context.theme.textTheme.subtitle1!.copyWith(
           color: Colors.white,
           fontWeight: FontWeight.bold,
@@ -90,14 +94,14 @@ class _CardProduct extends StatelessWidget {
     final imageProduct = Positioned(
       top: 15,
       left: 25,
-      child: InkWell(
+      child: GestureDetector(
         onTap: () {
-          Navigator.push(context, ProductScreen.getRoute());
+          Navigator.push(context, ProductScreen.getRoute(product));
         },
         child: Hero(
           tag: tag,
           child: Image.asset(
-            AppImages.mavik3,
+            image,
             height: 280,
             width: 280,
           ),

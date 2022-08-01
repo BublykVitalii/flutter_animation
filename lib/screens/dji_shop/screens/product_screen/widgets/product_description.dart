@@ -1,15 +1,21 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_animation/screens/dji_shop/screens/shopping_cart_screen/widgets/quantity.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 
 import 'package:flutter_animation/infrastructure/theme/theme_extension.dart';
+import 'package:flutter_animation/screens/dji_shop/domain/product.dart';
+import 'package:flutter_animation/screens/dji_shop/screens/shopping_cart_screen/widgets/quantity.dart';
 
 // ---Parameters---
 const _kRadius = Radius.circular(40);
 const _kPadding = 20.0;
 
 class ProductDescription extends StatelessWidget {
-  const ProductDescription({Key? key}) : super(key: key);
+  const ProductDescription({
+    Key? key,
+    required this.product,
+  }) : super(key: key);
+
+  final Product product;
 
   @override
   Widget build(BuildContext context) {
@@ -29,17 +35,15 @@ class ProductDescription extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const _ProductName(productName: 'DJI Mavik 3'),
+              _ProductName(productName: product.productName),
               const SizedBox(height: 5),
-              const _RatingReviewPrice(
+              _RatingReviewPrice(
                 rating: 3.0,
                 review: '56 Reviews',
-                price: '\$ 2.049',
+                price: '₴ ${product.price}',
               ),
               const SizedBox(height: 10),
-              const _DescriptionProduct(
-                  description:
-                      'Capture stunning imagery with a legendary Hasselblad camera and enjoy smooth flight with omnidirectional obstacle sensing. Every improvement on Mavic 3 sets a higher standard for aerial photography. Fly with Mavic 3 and discover imaging above everything.'),
+              _DescriptionProduct(description: product.description),
               const SizedBox(height: 10),
               Quantity(
                 text: Text(

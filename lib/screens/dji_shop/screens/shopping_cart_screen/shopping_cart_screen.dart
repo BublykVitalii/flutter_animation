@@ -69,11 +69,12 @@ class _ShoppingCartScreenState extends State<ShoppingCartScreen> {
           const SizedBox(height: 20),
           Expanded(
             child: ListView.separated(
-                separatorBuilder: (BuildContext context, int index) {
-                  return const Divider();
-                },
-                itemCount: 4,
-                itemBuilder: _buildShoppingCart),
+              separatorBuilder: (BuildContext context, int index) {
+                return const Divider();
+              },
+              itemCount: 4,
+              itemBuilder: _buildShoppingCart,
+            ),
           ),
         ],
       ),

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:flutter_animation/infrastructure/theme/app_colors.dart';
 import 'package:flutter_animation/infrastructure/theme/theme_extension.dart';
-
+import 'package:flutter_animation/screens/dji_shop/domain/product.dart';
 import 'package:flutter_animation/screens/dji_shop/screens/product_screen/widgets/product_app_bar.dart';
 import 'package:flutter_animation/screens/dji_shop/screens/product_screen/widgets/product_description.dart';
 import 'package:flutter_animation/screens/dji_shop/screens/product_screen/widgets/slider_image.dart';
@@ -16,16 +16,23 @@ const _kFromHeight = 60.0;
 class ProductScreen extends StatefulWidget {
   static const _routeName = '/product-screen';
 
-  static PageRoute getRoute() {
+  static PageRoute getRoute(Product product) {
     return MaterialPageRoute(
       settings: const RouteSettings(name: _routeName),
       builder: (context) {
-        return const ProductScreen();
+        return ProductScreen(
+          product: product,
+        );
       },
     );
   }
 
-  const ProductScreen({Key? key}) : super(key: key);
+  final Product product;
+
+  const ProductScreen({
+    Key? key,
+    required this.product,
+  }) : super(key: key);
 
   @override
   State<ProductScreen> createState() => _ProductScreenState();
@@ -41,9 +48,9 @@ class _ProductScreenState extends State<ProductScreen> {
         child: ProductAppBar(),
       ),
       body: Column(
-        children: const [
-          SliderImage(),
-          ProductDescription(),
+        children: [
+          SliderImage(product: widget.product),
+          ProductDescription(product: widget.product),
         ],
       ),
       bottomSheet: TextButton.icon(

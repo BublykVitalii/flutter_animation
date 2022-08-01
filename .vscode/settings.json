@@ -1,13 +1,19 @@
 {
   "cSpell.words": [
+    "allprojects",
     "Anyy",
     "ARGB",
     "autovalidate",
     "Aкушер",
+    "buildscript",
     "Cirbi",
+    "classpath",
     "Hasselblad",
     "horiz",
+    "injectible",
+    "jetbrains",
     "LTRB",
+    "Matrice",
     "Mavic",
     "mavik",
     "Medcentre",
@@ -20,6 +26,7 @@
     "slava",
     "speciality",
     "sublist",
+    "subprojects",
     "toggleable",
     "unfocus",
     "Vika",
@@ -70,5 +77,6 @@
     "Услуги",
     "Усталось",
     "Фильтр"
-  ]
+  ],
+  "java.configuration.updateBuildConfiguration": "interactive",
 }
