@@ -38,11 +38,20 @@ dependencies:
   flutter_bloc: ^8.0.1
   provider: ^6.0.3
   searchfield: ^0.6.6
+  carousel_slider: ^4.1.1
+  flutter_rating_bar: ^4.0.1
+  dio: ^4.0.6
+  equatable: ^2.0.3
+  get_it: ^7.2.0
+  singleton: ^0.0.2
+  injectable: ^1.5.3
+
 
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
+  injectable_generator: ^1.5.4
 
   # The "flutter_lints" package below contains a set of recommended lints to
   # encourage good coding practices. The lint set provided by the package is
@@ -50,6 +59,7 @@ dev_dependencies:
   # package. See that file for information about deactivating specific lint
   # rules and activating additional ones.
   flutter_lints: ^2.0.0
+  build_runner: ^2.2.0
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
@@ -62,6 +72,15 @@ flutter:
   #  To add assets to your application, add an assets section, like this:
   assets:
     - assets/images/
+    - assets/images/dji/
+    - assets/images/medOnline/
+    - assets/images/rypto/
+    - assets/images/dji/dji_air2s/
+    - assets/images/dji/dji_fpv/
+    - assets/images/dji/djiMatrice300rtk/
+    - assets/images/dji/djiMini3pro/
+    - assets/images/dji/djiPhantom4rtk/
+    - assets/images/dji/djiMatrice30/
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
